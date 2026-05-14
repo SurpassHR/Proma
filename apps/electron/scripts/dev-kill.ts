@@ -20,5 +20,7 @@ function kill(pattern: string): void {
   }
 }
 
-kill(isWin ? 'electronmon.exe' : 'electronmon \\.')
-kill(isWin ? 'electron.exe' : 'electron.*dist/main')
+// 注意：pkill -f 匹配完整命令行，模式必须足够精确，
+// 避免误杀父进程（父进程的脚本定义中包含 "electronmon ." 字样）
+kill(isWin ? 'electronmon.exe' : '[/]electronmon')
+kill(isWin ? 'electron.exe' : '[/]electron.*dist/main')

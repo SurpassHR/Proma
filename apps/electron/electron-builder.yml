@@ -41,6 +41,7 @@ files:
   - node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64/**/*
   - node_modules/@anthropic-ai/claude-agent-sdk-darwin-x64/**/*
   - node_modules/@anthropic-ai/claude-agent-sdk-win32-x64/**/*
+  - node_modules/@anthropic-ai/claude-agent-sdk-linux-x64/**/*
   # PDF 内联预览使用本地 PDF.js 资源，避免运行时依赖 CDN。
   - node_modules/pdfjs-dist/**/*
   # 排除 workspace 包的 symlink（代码已被 esbuild/Vite 打包到 dist/ 中）
@@ -124,6 +125,22 @@ nsis:
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: true
   createStartMenuShortcut: true
+
+# ============================================
+# Linux 配置
+# ============================================
+linux:
+  icon: resources/icon.png
+  category: Development
+  artifactName: "${productName}-${version}-${arch}.${ext}"
+  fileAssociations:
+    - ext: proma-backup
+      name: Proma Personal Backup
+    - ext: proma-share
+      name: Proma Share Package
+  target:
+    - target: AppImage
+    - target: deb
 
 # ============================================
 # 发布配置
